@@ -1,26 +1,291 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Modern UI/UX Color Palette - Inspired by Vercel, Linear, and Stripe */
+  --bg-primary: #0A0E27;
+  /* Deep navy - sophisticated and modern */
+  --bg-secondary: #111827;
+  /* Rich charcoal */
+  --bg-tertiary: #1F2937;
+  /* Elevated surfaces */
+
+  /* Card & Surface Colors */
+  --card-bg: rgba(17, 24, 39, 0.7);
+  /* Glassmorphic dark */
+  --card-border: rgba(16, 185, 129, 0.2);
+  /* Subtle emerald glow */
+  --card-hover-border: rgba(16, 185, 129, 0.5);
+
+  /* Primary Accent - Emerald Green (Success, Growth, Innovation) */
+  --accent-primary: #10B981;
+  /* Vibrant emerald */
+  --accent-primary-light: #34D399;
+  --accent-primary-dark: #059669;
+
+  /* Secondary Accent - Electric Blue (Trust, Technology) */
+  --accent-secondary: #3B82F6;
+  /* Electric blue */
+  --accent-secondary-light: #60A5FA;
+
+  /* Tertiary Accent - Coral (Energy, Creativity) */
+  --accent-tertiary: #FF6B6B;
+  /* Warm coral */
+  --accent-tertiary-light: #FF8787;
+
+  /* Text Colors */
+  --text-primary: #F9FAFB;
+  /* Almost white */
+  --text-secondary: #D1D5DB;
+  /* Light gray */
+  --muted: #9CA3AF;
+  /* Muted gray */
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);
+  --gradient-secondary: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  --gradient-accent: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Animated Gradient Background */
+html,
+body,
+#__next {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply text-slate-100 antialiased;
+  background: linear-gradient(135deg, #0A0E27 0%, #111827 50%, #1F2937 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated background gradient */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating orbs for depth */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.12;
+  z-index: 0;
+  animation: float 20s ease-in-out infinite;
+}
+
+body::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+  top: -300px;
+  right: -300px;
+}
+
+body::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+  bottom: -250px;
+  left: -250px;
+  animation-delay: -10s;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-3 lg:px-4;
+  position: relative;
+  z-index: 1;
+}
+
+/* Modern Card with Glassmorphism */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--accent-primary);
+  box-shadow:
+    0 20px 60px rgba(16, 185, 129, 0.25),
+    0 0 40px rgba(16, 185, 129, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Neon Text Effect */
+.neon-text {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientFlow 3s ease infinite;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes gradientFlow {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Neon Button */
+.btn-neon {
+  position: relative;
+  padding: 0.75rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 15px rgba(16, 185, 129, 0.4),
+    0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-neon:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 8px 25px rgba(16, 185, 129, 0.6),
+    0 0 40px rgba(59, 130, 246, 0.5);
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+/* Smooth Transitions */
+a,
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glow effect on hover */
+.glow-on-hover {
+  position: relative;
+}
+
+.glow-on-hover::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary), var(--accent-primary));
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  filter: blur(10px);
+  transition: opacity 0.3s ease;
+  background-size: 300% 300%;
+  animation: gradientRotate 3s linear infinite;
+}
+
+.glow-on-hover:hover::after {
+  opacity: 0.7;
+}
+
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Shimmer animation for progress bars */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
