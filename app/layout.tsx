@@ -1,6 +1,5 @@
 import './globals.css'
-import Header from '../Component/Header'
-import Footer from '../Component/Footer'
+import ConditionalLayout from '../Component/ConditionalLayout'
 
 export const metadata = {
   title: 'Croxx — Dev Portfolio (Dark)',
@@ -11,11 +10,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <body>
-        <Header />
-        <main className="pt-24 min-h-screen">
+        <ConditionalLayout>
           {children}
-        </main>
-        <Footer />
+        </ConditionalLayout>
       </body>
     </html>
   )

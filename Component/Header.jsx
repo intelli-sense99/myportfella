@@ -52,8 +52,14 @@ export default function Navbar() {
                         ))}
                     </nav>
 
-                    {/* Desktop CTA Button */}
-                    <div className="hidden md:block">
+                    {/* Desktop CTA Buttons */}
+                    <div className="hidden md:flex items-center gap-3">
+                        <Link
+                            href="/signin"
+                            className="px-5 py-2.5 text-sm font-semibold bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] rounded-lg hover:border-[var(--accent-primary)] hover:scale-105 transition-all duration-300"
+                        >
+                            Sign In
+                        </Link>
                         <a href="#contact" className="btn-neon">
                             Let's Talk
                         </a>
