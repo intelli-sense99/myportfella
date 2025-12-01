@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import axios from 'axios'
 
 export default function SignIn() {
     const [formData, setFormData] = useState({ email: '', password: '' })
@@ -10,11 +11,25 @@ export default function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
-        // Simulate API call
-        setTimeout(() => {
-            setIsLoading(false)
-            console.log('Sign in:', formData)
-        }, 1500)
+
+        // try {
+            const res = await axios.post("/api/login", formData)
+
+             console.log(res)
+            // if (res.data.success) {
+            //     alert("Logged in!")
+            //     // redirect
+            //     // window.location.href = "/admin"
+            // } else {
+            //     alert(res.data.message)
+            // }
+        // } catch (err) {
+        //     alert("Invalid email or password")
+        // }
+
+        setIsLoading(false)
+
+
     }
 
     // Check if form is valid (all fields filled)

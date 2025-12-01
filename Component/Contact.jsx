@@ -1,14 +1,99 @@
 'use client'
+import axios from 'axios'
 import { useState } from 'react'
 
 export default function Contact() {
   const [status, setStatus] = useState('')
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [errors, setErrors] = useState({ name: '', email: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e) => {
+  // Validate individual field
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return 'Name is required'
+        if (value.trim().length < 2) return 'Name must be at least 2 characters'
+        return ''
+      case 'email':
+        if (!value.trim()) return 'Email is required'
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(value)) return 'Please enter a valid email address'
+        return ''
+      case 'message':
+        if (!value.trim()) return 'Message is required'
+        if (value.trim().length < 10) return 'Message must be at least 10 characters'
+        return ''
+      default:
+        return ''
+    }
+  }
+
+  // Handle input change with real-time validation
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' })
+    }
+  }
+
+  // Handle input blur for validation
+  const handleBlur = (e) => {
+    const { name, value } = e.target
+    const error = validateField(name, value)
+    setErrors({ ...errors, [name]: error })
+  }
+
+  // Validate entire form
+  const validateForm = () => {
+    const newErrors = {
+      name: validateField('name', formData.name),
+      email: validateField('email', formData.email),
+      message: validateField('message', formData.message)
+    }
+    setErrors(newErrors)
+    return !Object.values(newErrors).some(error => error !== '')
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setStatus('✅ Message sent! I\'ll get back to you soon.')
-    setTimeout(() => setStatus(''), 5000)
+
+    // Validate form
+    if (!validateForm()) {
+      setStatus('')
+      return
+    }
+
+    setIsSubmitting(true)
+    setStatus('Sending...')
+
+    try {
+      const response = await axios.post('/api/queries', formData)
+      console.log('Response:', response.data)
+
+      // Success
+      setStatus('Message sent successfully! I\'ll get back to you soon.')
+      setFormData({ name: '', email: '', message: '' })
+      setErrors({ name: '', email: '', message: '' })
+
+      // Clear success message after 5 seconds
+      setTimeout(() => setStatus(''), 5000)
+
+    } catch (error) {
+      console.error('Error submitting form:', error)
+
+      // Handle error response
+      if (error.response?.data?.error) {
+        setStatus(error.response.data.error)
+      } else {
+        setStatus('An error occurred. Please try again later.')
+      }
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -42,12 +127,18 @@ export default function Contact() {
                   <input
                     name="name"
                     placeholder="John Doe"
-                    required
-                    className="w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 border-[var(--card-border)] rounded-lg focus:border-[var(--accent-primary)] focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)]"
+                    className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-[var(--card-border)] focus:border-[var(--accent-primary)]'
+                      }`}
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                 </div>
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-500 animate-pulse">
+                    {errors.name}
+                  </p>
+                )}
               </div>
 
               {/* Email Input */}
@@ -64,13 +155,19 @@ export default function Contact() {
                   <input
                     name="email"
                     placeholder="john@example.com"
-                    required
                     type="email"
-                    className="w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 border-[var(--card-border)] rounded-lg focus:border-[var(--accent-primary)] focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)]"
+                    className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-[var(--card-border)] focus:border-[var(--accent-primary)]'
+                      }`}
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                 </div>
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-500 animate-pulse">
+                    {errors.email}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -88,27 +185,44 @@ export default function Contact() {
                 <textarea
                   name="message"
                   placeholder="Tell me about your project..."
-                  required
-                  className="w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 border-[var(--card-border)] rounded-lg focus:border-[var(--accent-primary)] focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] resize-none"
+                  className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] resize-none ${errors.message ? 'border-red-500 focus:border-red-500' : 'border-[var(--card-border)] focus:border-[var(--accent-primary)]'
+                    }`}
                   rows="6"
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 ></textarea>
               </div>
+              {errors.message && (
+                <p className="mt-1 text-sm text-red-500 animate-pulse">
+                  {errors.message}
+                </p>
+              )}
             </div>
 
             {/* Submit Button and Status */}
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <button type="submit" className="btn-neon w-full sm:w-auto">
+              <button
+                type="submit"
+                className="btn-neon w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
+              >
                 <span className="flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                  Send Message
+                  {isSubmitting ? (
+                    <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  )}
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </span>
               </button>
               {status && (
-                <div className="text-sm text-[var(--accent-primary)] font-medium animate-pulse">
+                <div className={`text-sm font-medium animate-pulse ${status.includes('success') ? 'text-green-500' : status.includes('error') || status.includes('Failed') ? 'text-red-500' : 'text-[var(--accent-primary)]'
+                  }`}>
                   {status}
                 </div>
               )}
