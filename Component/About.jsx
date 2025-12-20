@@ -46,7 +46,7 @@ export default function About() {
         {highlights.map((item, index) => (
           <div
             key={item.title}
-            className="card text-center hover:scale-105 transition-transform duration-300"
+            className="card text-center hover:scale-105 transition-transform duration-300 cursor-pointer"
             style={{ animationDelay: `${index * 100}ms` }}
           >
             <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 flex items-center justify-center mx-auto mb-4 text-[var(--accent-primary)]">
