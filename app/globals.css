@@ -4,49 +4,49 @@
 @tailwind utilities;
 
 :root {
-  /* Modern UI/UX Color Palette - Inspired by Vercel, Linear, and Stripe */
-  --bg-primary: #0A0E27;
-  /* Deep navy - sophisticated and modern */
-  --bg-secondary: #111827;
-  /* Rich charcoal */
-  --bg-tertiary: #1F2937;
+  /* Netflix-Inspired Professional Developer Theme */
+  --bg-primary: #0A0A0A;
+  /* Pure deep black - cinematic foundation */
+  --bg-secondary: #141414;
+  /* Netflix dark gray */
+  --bg-tertiary: #1F1F1F;
   /* Elevated surfaces */
 
   /* Card & Surface Colors */
-  --card-bg: rgba(17, 24, 39, 0.7);
-  /* Glassmorphic dark */
-  --card-border: rgba(16, 185, 129, 0.2);
-  /* Subtle emerald glow */
-  --card-hover-border: rgba(16, 185, 129, 0.5);
+  --card-bg: rgba(20, 20, 20, 0.85);
+  /* Glassmorphic dark with more opacity */
+  --card-border: rgba(229, 9, 20, 0.25);
+  /* Subtle Netflix red glow */
+  --card-hover-border: rgba(229, 9, 20, 0.6);
 
-  /* Primary Accent - Emerald Green (Success, Growth, Innovation) */
-  --accent-primary: #10B981;
-  /* Vibrant emerald */
-  --accent-primary-light: #34D399;
-  --accent-primary-dark: #059669;
+  /* Primary Accent - Netflix Crimson (Bold, Professional, Attention) */
+  --accent-primary: #E50914;
+  /* Netflix signature red */
+  --accent-primary-light: #F40612;
+  --accent-primary-dark: #B20710;
 
-  /* Secondary Accent - Electric Blue (Trust, Technology) */
-  --accent-secondary: #3B82F6;
-  /* Electric blue */
-  --accent-secondary-light: #60A5FA;
+  /* Secondary Accent - Platinum Silver (Elegance, Technology) */
+  --accent-secondary: #B8B8B8;
+  /* Refined silver */
+  --accent-secondary-light: #E5E5E5;
 
-  /* Tertiary Accent - Coral (Energy, Creativity) */
-  --accent-tertiary: #FF6B6B;
-  /* Warm coral */
-  --accent-tertiary-light: #FF8787;
+  /* Tertiary Accent - Deep Crimson (Depth, Sophistication) */
+  --accent-tertiary: #831010;
+  /* Dark burgundy */
+  --accent-tertiary-light: #A01313;
 
   /* Text Colors */
-  --text-primary: #F9FAFB;
-  /* Almost white */
-  --text-secondary: #D1D5DB;
-  /* Light gray */
-  --muted: #9CA3AF;
+  --text-primary: #FFFFFF;
+  /* Pure white for maximum contrast */
+  --text-secondary: #B3B3B3;
+  /* Netflix gray text */
+  --muted: #808080;
   /* Muted gray */
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #10B981 0%, #3B82F6 100%);
-  --gradient-secondary: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-  --gradient-accent: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+  --gradient-primary: linear-gradient(135deg, #E50914 0%, #831010 100%);
+  --gradient-secondary: linear-gradient(135deg, #141414 0%, #0A0A0A 100%);
+  --gradient-accent: linear-gradient(135deg, #E50914 0%, #F40612 50%, #831010 100%);
 }
 
 /* Animated Gradient Background */
@@ -56,9 +56,14 @@ body,
   height: 100%;
 }
 
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply text-slate-100 antialiased;
-  background: linear-gradient(135deg, #0A0E27 0%, #111827 50%, #1F2937 100%);
+  background: linear-gradient(135deg, #0A0A0A 0%, #141414 50%, #1F1F1F 100%);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   color: var(--text-primary);
@@ -90,7 +95,7 @@ body::after {
   position: fixed;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.12;
+  opacity: 0.15;
   z-index: 0;
   animation: float 20s ease-in-out infinite;
 }
@@ -106,11 +111,12 @@ body::before {
 body::after {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
   bottom: -250px;
   left: -250px;
   animation-delay: -10s;
 }
+
 
 @keyframes float {
 
@@ -129,7 +135,7 @@ body::after {
 }
 
 .container {
-  @apply max-w-7xl mx-auto px-3 lg:px-4;
+  @apply mx-auto px-6 lg:px-8;
   position: relative;
   z-index: 1;
 }
@@ -144,6 +150,7 @@ body::after {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card::before {
@@ -162,8 +169,8 @@ body::after {
   transform: translateY(-8px) scale(1.02);
   border-color: var(--accent-primary);
   box-shadow:
-    0 20px 60px rgba(16, 185, 129, 0.25),
-    0 0 40px rgba(16, 185, 129, 0.15),
+    0 20px 60px rgba(229, 9, 20, 0.35),
+    0 0 40px rgba(229, 9, 20, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
@@ -196,29 +203,30 @@ body::after {
   }
 }
 
-/* Neon Button */
+/* Netflix-Style Button */
 .btn-neon {
   position: relative;
   padding: 0.75rem 2rem;
   font-size: 0.875rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark));
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow:
-    0 4px 15px rgba(16, 185, 129, 0.4),
-    0 0 20px rgba(59, 130, 246, 0.3);
+    0 4px 15px rgba(229, 9, 20, 0.5),
+    0 0 20px rgba(229, 9, 20, 0.3);
 }
 
 .btn-neon:hover {
   transform: translateY(-2px) scale(1.05);
+  background: var(--accent-primary-light);
   box-shadow:
-    0 8px 25px rgba(16, 185, 129, 0.6),
-    0 0 40px rgba(59, 130, 246, 0.5);
+    0 8px 30px rgba(229, 9, 20, 0.7),
+    0 0 50px rgba(229, 9, 20, 0.5);
 }
 
 /* Smooth Transitions */

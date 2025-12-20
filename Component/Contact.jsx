@@ -232,7 +232,7 @@ export default function Contact() {
 
         {/* Contact Info Cards */}
         <div className="grid md:grid-cols-3 gap-4 mt-8">
-          <div className="card text-center hover:scale-105 transition-transform duration-300">
+          <div className="card text-center hover:scale-105 transition-transform duration-300 cursor-pointer">
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 flex items-center justify-center mx-auto mb-3">
               <svg className="w-6 h-6 text-[var(--accent-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -242,7 +242,7 @@ export default function Contact() {
             <div className="text-xs text-[var(--muted)] mt-1">croxx@example.com</div>
           </div>
 
-          <div className="card text-center hover:scale-105 transition-transform duration-300">
+          <div className="card text-center hover:scale-105 transition-transform duration-300 cursor-pointer">
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 flex items-center justify-center mx-auto mb-3">
               <svg className="w-6 h-6 text-[var(--accent-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -253,7 +253,7 @@ export default function Contact() {
             <div className="text-xs text-[var(--muted)] mt-1">Remote Worldwide</div>
           </div>
 
-          <div className="card text-center hover:scale-105 transition-transform duration-300">
+          <div className="card text-center hover:scale-105 transition-transform duration-300 cursor-pointer">
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--accent-primary)]/20 to-[var(--accent-secondary)]/20 flex items-center justify-center mx-auto mb-3">
               <svg className="w-6 h-6 text-[var(--accent-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

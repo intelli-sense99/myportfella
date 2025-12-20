@@ -74,7 +74,7 @@ export default function Services() {
         {services.map((s, i) => (
           <div
             key={s.title}
-            className="card group hover:scale-105 transition-all duration-300 text-center"
+            className="card group hover:scale-105 transition-all duration-300 text-center cursor-pointer"
             style={{ animationDelay: `${i * 75}ms` }}
           >
             {/* Icon */}

@@ -27,36 +27,37 @@ export default function Navbar() {
                 ? 'bg-[var(--bg-primary)]/90 backdrop-blur-xl border-b border-[var(--accent-primary)]/20 shadow-lg'
                 : 'bg-gradient-to-b from-black/70 to-transparent backdrop-blur border-b border-white/5'
                 }`}>
-                <div className="max-w-7xl mx-auto px-3 lg:px-4 flex items-center justify-between h-16">
+                <div className="mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center text-white font-bold shadow-lg glow-on-hover transition-transform group-hover:scale-110">
-                            C
-                        </div>
-                        <div className="text-base font-bold bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent">
-                            Croxx
+                    <Link href="/" className="flex items-center gap-3 group cursor-pointer">
+                        <div className="relative transition-all duration-300 group-hover:scale-110">
+                            <span className="text-3xl font-bold text-[var(--accent-primary)] tracking-tight" style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Courier New', monospace" }}>
+                                &lt;??&gt;
+                            </span>
+                            <div className="absolute inset-0 blur-lg bg-[var(--accent-primary)] opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
                         </div>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex gap-8 text-sm font-medium">
+                    <nav className="hidden md:flex gap-1 text-base font-medium">
                         {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
                             <a
                                 key={item}
                                 href={`#${item.toLowerCase()}`}
-                                className="relative text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors group"
+                                className="relative px-5 py-2 text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-all duration-300 group hover:-translate-y-0.5 cursor-pointer"
                             >
-                                {item}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] group-hover:w-full transition-all duration-300"></span>
+                                <span className="relative z-10">{item}</span>
+                                {/* Elegant thin underline */}
+                                <span className="absolute bottom-1 left-5 right-5 h-[1px] bg-[var(--accent-primary)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
                             </a>
                         ))}
                     </nav>
 
                     {/* Desktop CTA Buttons */}
-                    <div className="hidden md:flex items-center gap-3">
+                    <div className="hidden md:flex items-center gap-6">
                         <Link
                             href="/signin"
-                            className="px-5 py-2.5 text-sm font-semibold bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] rounded-lg hover:border-[var(--accent-primary)] hover:scale-105 transition-all duration-300"
+                            className="text-base font-medium text-[var(--text-secondary)] hover:text-white transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
                         >
                             Sign In
                         </Link>
@@ -67,7 +68,7 @@ export default function Navbar() {
 
                     {/* Hamburger Menu Button */}
                     <button
-                        className="md:hidden relative w-10 h-10 flex items-center justify-center focus:outline-none group"
+                        className="md:hidden relative w-10 h-10 flex items-center justify-center focus:outline-none group cursor-pointer"
                         onClick={() => setOpen(!open)}
                         aria-label="Toggle menu"
                     >
@@ -83,29 +84,39 @@ export default function Navbar() {
                 </div>
 
                 {/* Mobile Menu */}
-                <div className={`md:hidden overflow-hidden transition-all duration-300 ${open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                <div className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${open ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
                     }`}>
                     <div className="bg-[var(--card-bg)] backdrop-blur-xl border-t border-[var(--accent-primary)]/20">
-                        <div className="max-w-7xl mx-auto px-3 lg:px-4 py-6 flex flex-col gap-4">
+                        <div className="mx-auto px-6 lg:px-8 py-10 flex flex-col items-center gap-8 text-center">
                             {['About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
                                 <a
                                     key={item}
                                     href={`#${item.toLowerCase()}`}
                                     onClick={handleLinkClick}
-                                    className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] font-medium transition-all duration-300 hover:translate-x-2 flex items-center gap-3 group"
+                                    className="relative text-2xl text-[var(--text-primary)] hover:text-[var(--accent-primary)] font-medium transition-all duration-300 group cursor-pointer"
                                     style={{ animationDelay: `${index * 50}ms` }}
                                 >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                                    {item}
+                                    <span className="relative z-10">{item}</span>
+                                    {/* Elegant thin underline centered */}
+                                    <span className="absolute -bottom-1 left-0 right-0 h-[1px] bg-[var(--accent-primary)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
                                 </a>
                             ))}
-                            <a
-                                href="#contact"
-                                onClick={handleLinkClick}
-                                className="btn-neon mt-2 text-center"
-                            >
-                                Let's Talk
-                            </a>
+                            <div className="flex flex-col items-center gap-6 pt-6 border-t border-white/5 w-full">
+                                <Link
+                                    href="/signin"
+                                    onClick={handleLinkClick}
+                                    className="text-xl font-medium text-[var(--text-secondary)] hover:text-white transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                                >
+                                    Sign In
+                                </Link>
+                                <a
+                                    href="#contact"
+                                    onClick={handleLinkClick}
+                                    className="btn-neon text-center py-4 px-10 w-full max-w-[250px]"
+                                >
+                                    Let's Talk
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +125,7 @@ export default function Navbar() {
             {/* Backdrop overlay for mobile menu */}
             {open && (
                 <div
-                    className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
+                    className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 cursor-pointer"
                     onClick={() => setOpen(false)}
                 ></div>
             )}
