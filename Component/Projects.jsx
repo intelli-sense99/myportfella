@@ -16,11 +16,11 @@ const projects = [
     desc: 'Implemented Google reCAPTCHA loading only on specific pages.',
     tags: ['Magento 2', 'Security', 'Performance']
   },
-  {
-    title: 'A–Z Brand Filter',
-    desc: 'Frontend brand category filter with A–Z buttons.',
-    tags: ['Magento 2', 'Frontend', 'UX']
-  },
+  // {
+  //   title: 'A–Z Brand Filter',
+  //   desc: 'Frontend brand category filter with A–Z buttons.',
+  //   tags: ['Magento 2', 'Frontend', 'UX']
+  // },
   {
     title: 'Swatch New Label',
     desc: 'Show "New" label on configurable swatches via child product attribute.',
