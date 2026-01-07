@@ -65,13 +65,14 @@ body {
   @apply text-slate-100 antialiased;
   background: linear-gradient(135deg, #0A0A0A 0%, #141414 50%, #1F1F1F 100%);
   background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  /* animation: gradientShift 15s ease infinite; */
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
 }
+
 
 /* Animated background gradient */
 @keyframes gradientShift {
@@ -88,9 +89,9 @@ body {
   }
 }
 
-/* Floating orbs for depth */
-body::before,
-body::after {
+
+/* Floating orbs for depth - using body::before only */
+body::before {
   content: '';
   position: fixed;
   border-radius: 50%;
@@ -98,23 +99,11 @@ body::after {
   opacity: 0.15;
   z-index: 0;
   animation: float 20s ease-in-out infinite;
-}
-
-body::before {
   width: 600px;
   height: 600px;
   background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
   top: -300px;
   right: -300px;
-}
-
-body::after {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
-  bottom: -250px;
-  left: -250px;
-  animation-delay: -10s;
 }
 
 
