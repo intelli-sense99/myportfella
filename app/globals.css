@@ -157,10 +157,7 @@ body::before {
 .card:hover {
   transform: translateY(-8px) scale(1.02);
   border-color: var(--accent-primary);
-  box-shadow:
-    0 20px 60px rgba(229, 9, 20, 0.35),
-    0 0 40px rgba(229, 9, 20, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0px 12px #e5091459, 0 0 12px #e5091440, inset 0 1px #ffffff1a
 }
 
 .card:hover::before {

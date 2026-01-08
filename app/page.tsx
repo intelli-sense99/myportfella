@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <div className="container py-12">
+      <div className="container-fluid py-12">
         <About />
         <Skills />
         <Projects />

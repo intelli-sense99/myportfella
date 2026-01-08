@@ -179,7 +179,7 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
@@ -244,162 +244,86 @@ export default function Skills() {
               {skills.map((skill, index) => (
                 <div
                   key={`${skill.name}-${index}`}
-                  className="flex-[0_0_240px] min-w-0 md:flex-[0_0_280px] px-3"
+                  className="flex-[0_0_180px] min-w-0 md:flex-[0_0_220px] px-6"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <div
-                    className={`relative h-full bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] rounded-2xl p-8 transition-all duration-500 cursor-pointer group overflow-hidden ${
-                      hoveredIndex === index
-                        ? "scale-105 border-[var(--accent-primary)] shadow-[0_20px_60px_rgba(229,9,20,0.4)]"
-                        : "hover:scale-[1.02]"
-                    }`}
+                    className="relative group transition-all duration-500 cursor-pointer flex flex-col items-center justify-center"
                     style={{
                       transform:
-                        hoveredIndex === index
-                          ? "translateY(-12px) rotateX(5deg)"
-                          : "",
-                      transformStyle: "preserve-3d",
+                        hoveredIndex === index ? "scale(1.15)" : "scale(1)",
                     }}
                   >
-                    {/* Animated Top Border */}
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--accent-primary)] via-[var(--accent-secondary)] to-[var(--accent-tertiary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                    {/* Glowing Background Effect */}
+                    {/* Glowing Background Effect - Subtle when hovered */}
                     <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-2xl"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-700 blur-[40px] rounded-full"
                       style={{
                         background: `radial-gradient(circle at center, ${skill.color}, transparent)`,
+                        width: "120px",
+                        height: "120px",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
                       }}
                     ></div>
 
-                    {/* Content */}
-                    <div className="relative z-10">
-                      {/* Icon Container */}
-                      <div className="flex items-center justify-center mb-6">
-                        <div
-                          className={`relative w-24 h-24 rounded-2xl flex items-center justify-center transition-all duration-500 ${
-                            hoveredIndex === index ? "scale-110 rotate-6" : ""
+                    {/* Icon Container */}
+                    <div className="relative z-10 mb-5">
+                      <div
+                        className={`relative w-24 h-24 flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                          hoveredIndex === index ? "translate-y-[-10px]" : ""
+                        }`}
+                      >
+                        <skill.icon
+                          className={`text-6xl transition-all duration-500 ${
+                            hoveredIndex === index
+                              ? "drop-shadow-[0_0_15px_" + skill.color + "]"
+                              : ""
                           }`}
                           style={{
-                            background: `linear-gradient(135deg, ${skill.color}15, ${skill.color}05)`,
-                            boxShadow:
+                            color: skill.color,
+                            filter:
                               hoveredIndex === index
-                                ? `0 0 40px ${skill.color}40`
+                                ? `drop-shadow(0 0 12px ${skill.color}80)`
                                 : "none",
                           }}
-                        >
-                          <skill.icon
-                            className="text-5xl transition-all duration-500"
-                            style={{ color: skill.color }}
-                          />
+                        />
 
-                          {/* Rotating Ring */}
+                        {/* Interactive Animation on Hover */}
+                        {hoveredIndex === index && (
                           <div
-                            className={`absolute inset-0 rounded-2xl border-2 transition-all duration-700 ${
-                              hoveredIndex === index
-                                ? "rotate-180 scale-125 opacity-0"
-                                : "rotate-0 scale-100 opacity-50"
-                            }`}
-                            style={{ borderColor: skill.color }}
-                          ></div>
-                        </div>
-                      </div>
-
-                      {/* Skill Name */}
-                      <h3 className="text-2xl font-bold text-center mb-2 text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors duration-300">
-                        {skill.name}
-                      </h3>
-
-                      {/* Category Badge */}
-                      <div className="flex justify-center mb-4">
-                        <span
-                          className="px-4 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm border transition-all duration-300"
-                          style={{
-                            backgroundColor: `${skill.color}15`,
-                            borderColor: `${skill.color}40`,
-                            color: skill.color,
-                          }}
-                        >
-                          {skill.category}
-                        </span>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-center text-sm text-[var(--text-secondary)] mb-6 min-h-[40px]">
-                        {skill.description}
-                      </p>
-
-                      {/* Progress Bar - Hidden for now */}
-                      <div className="hidden space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-[var(--text-secondary)]">
-                            Proficiency
-                          </span>
-                          <span
-                            className="text-lg font-bold"
-                            style={{ color: skill.color }}
-                          >
-                            {skill.level}%
-                          </span>
-                        </div>
-
-                        {/* Animated Progress Bar */}
-                        <div className="relative w-full bg-[var(--bg-tertiary)] rounded-full h-3 overflow-hidden shadow-inner">
-                          <div
-                            className="h-3 rounded-full transition-all duration-1000 ease-out relative overflow-hidden"
+                            className="absolute -inset-4 border-2 rounded-full animate-[spin_4s_linear_infinite]"
                             style={{
-                              width:
-                                hoveredIndex === index
-                                  ? `${skill.level}%`
-                                  : "0%",
-                              background: `linear-gradient(90deg, ${skill.color}, ${skill.color}CC)`,
-                              boxShadow: `0 0 20px ${skill.color}60`,
-                            }}
-                          >
-                            {/* Shimmer Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]"></div>
-                          </div>
-
-                          {/* Glow Effect */}
-                          <div
-                            className="absolute top-0 left-0 h-full rounded-full blur-md transition-all duration-1000"
-                            style={{
-                              width:
-                                hoveredIndex === index
-                                  ? `${skill.level}%`
-                                  : "0%",
-                              background: skill.color,
-                              opacity: 0.3,
+                              borderColor: `${skill.color}20`,
+                              borderTopColor: skill.color,
                             }}
                           ></div>
-                        </div>
-                      </div>
-
-                      {/* Hover Indicator */}
-                      <div className="mt-6 text-center">
-                        <div
-                          className={`inline-flex items-center gap-2 text-xs font-medium transition-all duration-300 ${
-                            hoveredIndex === index
-                              ? "opacity-100 translate-y-0"
-                              : "opacity-0 translate-y-2"
-                          }`}
-                          style={{ color: skill.color }}
-                        >
-                          <span
-                            className="w-2 h-2 rounded-full animate-pulse"
-                            style={{ backgroundColor: skill.color }}
-                          ></span>
-                          Actively Using
-                        </div>
+                        )}
                       </div>
                     </div>
 
-                    {/* Corner Accent */}
+                    {/* Skill Name */}
+                    <h3
+                      className={`relative z-10 text-xl font-bold text-center transition-all duration-500 ${
+                        hoveredIndex === index
+                          ? "text-white scale-110 tracking-wider"
+                          : "text-[var(--text-secondary)] opacity-80"
+                      }`}
+                    >
+                      {skill.name}
+                    </h3>
+
+                    {/* Subtle Hover Pulse */}
                     <div
-                      className="absolute bottom-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-300"
+                      className={`mt-3 w-1.5 h-1.5 rounded-full transition-all duration-500 ${
+                        hoveredIndex === index
+                          ? "scale-100 opacity-100"
+                          : "scale-0 opacity-0"
+                      }`}
                       style={{
-                        background: `radial-gradient(circle at bottom right, ${skill.color}, transparent)`,
+                        backgroundColor: skill.color,
+                        boxShadow: `0 0 10px ${skill.color}`,
                       }}
                     ></div>
                   </div>
@@ -409,12 +333,13 @@ export default function Skills() {
           </div>
 
           {/* Gradient Fade Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--bg-primary)] to-transparent pointer-events-none z-10"></div>
+          {/* <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--bg-primary)] to-transparent pointer-events-none z-10"></div>
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--bg-primary)] to-transparent pointer-events-none z-10"></div>
+           */}
         </div>
 
         {/* Stats Section */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="container mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { label: "Technologies", value: skills.length, icon: "🚀" },
             { label: "Years Experience", value: "5+", icon: "⏱️" },
