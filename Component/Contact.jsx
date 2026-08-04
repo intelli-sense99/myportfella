@@ -29,14 +29,12 @@ export default function Contact() {
         return "";
       case "phone":
         if (!value.trim()) return "Phone number is required";
-        const phoneRegex = /^[+]?[0-9\s\-()]{7,20}$/;
+        const phoneRegex = /^\+?[0-9]+$/;
         if (!phoneRegex.test(value))
-          return "Please enter a valid phone number";
+          return "Please enter a valid phone number (digits only)";
         return "";
       case "message":
         if (!value.trim()) return "Message is required";
-        if (value.trim().length < 10)
-          return "Message must be at least 10 characters";
         return "";
       default:
         return "";
@@ -91,8 +89,8 @@ export default function Contact() {
 
       // Success
       setStatus("Message sent successfully! I'll get back to you soon.");
-      setFormData({ name: "", email: "", message: "" });
-      setErrors({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setErrors({ name: "", email: "", phone: "", message: "" });
 
       // Clear success message after 5 seconds
       setTimeout(() => setStatus(""), 5000);
@@ -126,12 +124,12 @@ export default function Contact() {
       <div className="max-w-3xl mx-auto">
         <div className="card">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name, Email, and Phone Row */}
+            {/* Name, Phone, and Email Row */}
             <div className="grid md:grid-cols-3 gap-6">
               {/* Name Input */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                  Your Name
+                  Your Name <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
@@ -151,7 +149,7 @@ export default function Contact() {
                   </div>
                   <input
                     name="name"
-                    placeholder="John Doe"
+                    placeholder="Your Name"
                     className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${
                       errors.name
                         ? "border-red-500 focus:border-red-500"
@@ -169,10 +167,52 @@ export default function Contact() {
                 )}
               </div>
 
+              {/* Phone Input */}
+              <div className="relative">
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
+                  Phone Number <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    name="phone"
+                    placeholder="9800040010"
+                    type="tel"
+                    className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${
+                      errors.phone
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-[var(--card-border)] focus:border-[var(--accent-primary)]"
+                    }`}
+                    value={formData.phone}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </div>
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-500 animate-pulse">
+                    {errors.phone}
+                  </p>
+                )}
+              </div>
+
               {/* Email Input */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                  Email Address
+                  Email Address <span className="text-red-500 ml-1">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
@@ -210,54 +250,12 @@ export default function Contact() {
                   </p>
                 )}
               </div>
-
-              {/* Phone Input */}
-              <div className="relative">
-                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                  Phone Number
-                </label>
-                <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                  </div>
-                  <input
-                    name="phone"
-                    placeholder="+1 555-555-5555"
-                    type="tel"
-                    className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${
-                      errors.phone
-                        ? "border-red-500 focus:border-red-500"
-                        : "border-[var(--card-border)] focus:border-[var(--accent-primary)]"
-                    }`}
-                    value={formData.phone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                {errors.phone && (
-                  <p className="mt-1 text-sm text-red-500 animate-pulse">
-                    {errors.phone}
-                  </p>
-                )}
-              </div>
             </div>
 
             {/* Message Textarea */}
             <div className="relative">
               <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                Your Message
+                Your Message <span className="text-red-500 ml-1">*</span>
               </label>
               <div className="relative">
                 <div className="absolute left-4 top-4 text-[var(--muted)]">
@@ -297,7 +295,7 @@ export default function Contact() {
             </div>
 
             {/* Submit Button and Status */}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex flex-col sm:flex-row-reverse items-center justify-between gap-4">
               <button
                 type="submit"
                 className="btn-neon w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"

@@ -23,16 +23,14 @@ const QueriesSchema = new mongoose.Schema({
         required: [true, 'Phone number is required'],
         trim: true,
         match: [
-            /^[+]?[0-9\s\-()]{7,20}$/,
+            /^\+?[0-9]+$/,
             'Please enter a valid phone number'
         ]
     },
     message: {
         type: String,
         required: [true, 'Message is required'],
-        trim: true,
-        minlength: [10, 'Message must be at least 10 characters'],
-        maxlength: [1000, 'Message cannot exceed 1000 characters']
+        trim: true
     }
 },
     {

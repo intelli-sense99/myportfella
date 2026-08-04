@@ -55,12 +55,12 @@ export default function Navbar() {
 
                     {/* Desktop CTA Buttons */}
                     <div className="hidden md:flex items-center gap-6">
-                        <Link
+                        {/* <Link
                             href="/signin"
                             className="text-base font-medium text-[var(--text-secondary)] hover:text-white transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
                         >
                             Sign In
-                        </Link>
+                        </Link> */}
                         <a href="#contact" className="btn-neon">
                             Let's Talk
                         </a>
@@ -102,13 +102,13 @@ export default function Navbar() {
                                 </a>
                             ))}
                             <div className="flex flex-col items-center gap-6 pt-6 border-t border-white/5 w-full">
-                                <Link
+                                {/* <Link
                                     href="/signin"
                                     onClick={handleLinkClick}
                                     className="text-xl font-medium text-[var(--text-secondary)] hover:text-white transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                                 >
                                     Sign In
-                                </Link>
+                                </Link> */}
                                 <a
                                     href="#contact"
                                     onClick={handleLinkClick}

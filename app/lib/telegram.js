@@ -9,7 +9,7 @@ import { formatTelegramMessage } from "@/Component/Telegram/QueryTemplate";
  * @param {string} query.message - The message content
  * @returns {Promise<boolean>} Resolves to true if successful, false otherwise
  */
-export async function sendTelegramNotification({ name, email, message }) {
+export async function sendTelegramNotification({ name, email, phone, message }) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
@@ -19,7 +19,7 @@ export async function sendTelegramNotification({ name, email, message }) {
     }
 
     // Generate the HTML message using our modular template
-    const htmlMessage = formatTelegramMessage({ name, email, message });
+    const htmlMessage = formatTelegramMessage({ name, email, phone, message });
 
     try {
         const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
