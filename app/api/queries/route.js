@@ -1,5 +1,6 @@
 import connectDB from "@/app/lib/dbconnect";
 import Queries from "@/app/models/Queries";
+import { sendTelegramNotification } from "@/app/lib/telegram";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
@@ -11,10 +12,10 @@ export async function POST(request) {
         const body = await request.json();
         console.log('Received query form data:', body);
 
-        const { name, email, message } = body;
+        const { name, email, phone, message } = body;
 
         // Validate required fields
-        if (!name || !email || !message) {
+        if (!name || !email || !phone || !message) {
             return NextResponse.json(
                 { error: "All fields are required" },
                 { status: 400 }
@@ -25,10 +26,23 @@ export async function POST(request) {
         const newQuery = await Queries.create({
             name: name.trim(),
             email: email.trim().toLowerCase(),
+            phone: phone.trim(),
             message: message.trim()
         });
 
         console.log('Query form submission saved:', newQuery._id);
+
+        // Send Telegram notification
+        try {
+            await sendTelegramNotification({
+                name: newQuery.name,
+                email: newQuery.email,
+                phone: newQuery.phone,
+                message: newQuery.message
+            });
+        } catch (tgError) {
+            console.error("Telegram notification failed (ignored to keep response success):", tgError);
+        }
 
         return NextResponse.json(
             {

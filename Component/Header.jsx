@@ -40,7 +40,7 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex gap-1 text-base font-medium">
-                        {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
+                        {['About', 'Skills', 'Projects'].map((item) => (
                             <a
                                 key={item}
                                 href={`#${item.toLowerCase()}`}
@@ -88,7 +88,7 @@ export default function Navbar() {
                     }`}>
                     <div className="bg-[var(--card-bg)] backdrop-blur-xl border-t border-[var(--accent-primary)]/20">
                         <div className="mx-auto px-6 lg:px-8 py-10 flex flex-col items-center gap-8 text-center">
-                            {['About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
+                            {['About', 'Skills', 'Projects'].map((item, index) => (
                                 <a
                                     key={item}
                                     href={`#${item.toLowerCase()}`}
