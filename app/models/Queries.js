@@ -8,7 +8,7 @@ const QueriesSchema = new mongoose.Schema({
         minlength: [2, 'Name must be at least 2 characters'],
         maxlength: [100, 'Name cannot exceed 100 characters']
     },
-    email: {
+        email: {
         type: String,
         required: [true, 'Email is required'],
         trim: true,
@@ -18,12 +18,19 @@ const QueriesSchema = new mongoose.Schema({
             'Please enter a valid email address'
         ]
     },
+    phone: {
+        type: String,
+        required: [true, 'Phone number is required'],
+        trim: true,
+        match: [
+            /^\+?[0-9]+$/,
+            'Please enter a valid phone number'
+        ]
+    },
     message: {
         type: String,
         required: [true, 'Message is required'],
-        trim: true,
-        minlength: [10, 'Message must be at least 10 characters'],
-        maxlength: [1000, 'Message cannot exceed 1000 characters']
+        trim: true
     }
 },
     {
