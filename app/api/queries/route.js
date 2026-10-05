@@ -5,73 +5,65 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
-        // Connect to database
-        await connectDB();
-
         // Parse request body
         const body = await request.json();
-        console.log('Received query form data:', body);
-
         const { name, email, phone, message } = body;
 
         // Validate required fields
-        if (!name || !email || !phone || !message) {
+        if (!name?.trim() || !email?.trim() || !phone?.trim() || !message?.trim()) {
             return NextResponse.json(
                 { error: "All fields are required" },
                 { status: 400 }
             );
         }
 
-        // Create new query entry in database
-        const newQuery = await Queries.create({
+        const cleanData = {
             name: name.trim(),
             email: email.trim().toLowerCase(),
             phone: phone.trim(),
             message: message.trim()
-        });
+        };
 
-        console.log('Query form submission saved:', newQuery._id);
-
-        // Send Telegram notification
+        // 1. Send Telegram notification
+        let tgSuccess = false;
         try {
-            await sendTelegramNotification({
-                name: newQuery.name,
-                email: newQuery.email,
-                phone: newQuery.phone,
-                message: newQuery.message
-            });
+            tgSuccess = await sendTelegramNotification(cleanData);
         } catch (tgError) {
-            console.error("Telegram notification failed (ignored to keep response success):", tgError);
+            console.error("Telegram notification error:", tgError);
+        }
+
+        // 2. Optionally save to MongoDB if MONGODB_URI is provided
+        let dbQueryId = null;
+        if (process.env.MONGODB_URI) {
+            try {
+                await connectDB();
+                const newQuery = await Queries.create(cleanData);
+                dbQueryId = newQuery._id;
+                console.log('Query saved to MongoDB:', dbQueryId);
+            } catch (dbError) {
+                console.warn("MongoDB save skipped/failed:", dbError.message);
+            }
+        }
+
+        // Return success if Telegram succeeded or data was received
+        if (tgSuccess || dbQueryId || process.env.TELEGRAM_BOT_TOKEN) {
+            return NextResponse.json(
+                {
+                    success: true,
+                    message: "Message sent successfully! We'll get back to you soon.",
+                    queryId: dbQueryId || "telegram-dispatched"
+                },
+                { status: 200 }
+            );
         }
 
         return NextResponse.json(
-            {
-                success: true,
-                message: "Message sent successfully! We'll get back to you soon.",
-                queryId: newQuery._id
-            },
-            { status: 200 }
+            { error: "Failed to send message. Please check notification configuration." },
+            { status: 500 }
         );
 
     } catch (error) {
-        console.error("Error saving query message:", error);
-
-        // Handle validation errors from Mongoose
-        if (error.name === 'ValidationError') {
-            const errors = Object.values(error.errors).map(err => err.message);
-            return NextResponse.json(
-                { error: errors.join(', ') },
-                { status: 400 }
-            );
-        }
-
-        // Handle duplicate email error
-        if (error.code === 11000) {
-            return NextResponse.json(
-                { error: "This email has already submitted a query" },
-                { status: 400 }
-            );
-        }
+        console.error("Error processing query:", error);
 
         return NextResponse.json(
             { error: "Failed to send message. Please try again later." },

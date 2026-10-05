@@ -1,4 +1,4 @@
-import { formatTelegramMessage } from "@/Component/Telegram/QueryTemplate";
+import { formatTelegramMessage } from "../../Component/Telegram/QueryTemplate.js";
 
 /**
  * Sends a beautifully formatted HTML notification to a Telegram Chat/Channel.
