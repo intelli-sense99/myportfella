@@ -3,22 +3,21 @@
 export default function WaterWave() {
   return (
     <div className="water-wave-container">
-      {/* Water Wave SVG Animation */}
+      {/* Wave Layer 1 - Electric Emerald */}
       <svg
         className="water-wave"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
       >
-        {/* Wave Layer 1 - Red */}
         <path
-          fill="#E50914"
-          fillOpacity="0.08"
+          fill="#00F29D"
+          fillOpacity="0.04"
           d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
         >
           <animate
             attributeName="d"
-            dur="10s"
+            dur="12s"
             repeatCount="indefinite"
             values="
               M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
@@ -29,21 +28,21 @@ export default function WaterWave() {
         </path>
       </svg>
 
+      {/* Wave Layer 2 - Cyber Cyan */}
       <svg
         className="water-wave water-wave-2"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
       >
-        {/* Wave Layer 2 - Dark Red */}
         <path
-          fill="#831010"
-          fillOpacity="0.06"
+          fill="#00D2FF"
+          fillOpacity="0.03"
           d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
         >
           <animate
             attributeName="d"
-            dur="15s"
+            dur="18s"
             repeatCount="indefinite"
             values="
               M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
@@ -54,21 +53,21 @@ export default function WaterWave() {
         </path>
       </svg>
 
+      {/* Wave Layer 3 - Deep Mint Emerald */}
       <svg
         className="water-wave water-wave-3"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
       >
-        {/* Wave Layer 3 - Silver */}
         <path
-          fill="#B8B8B8"
-          fillOpacity="0.04"
+          fill="#10B981"
+          fillOpacity="0.02"
           d="M0,32L48,58.7C96,85,192,139,288,149.3C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
         >
           <animate
             attributeName="d"
-            dur="20s"
+            dur="24s"
             repeatCount="indefinite"
             values="
               M0,32L48,58.7C96,85,192,139,288,149.3C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
@@ -97,15 +96,14 @@ export default function WaterWave() {
           left: 0;
           width: 100%;
           height: 100%;
-          opacity: 1;
         }
 
         .water-wave-2 {
-          animation-delay: -5s;
+          animation-delay: -6s;
         }
 
         .water-wave-3 {
-          animation-delay: -10s;
+          animation-delay: -12s;
         }
       `}</style>
     </div>

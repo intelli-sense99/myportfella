@@ -56,9 +56,12 @@ export default function About() {
             <div className="w-32 h-1.5 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] rounded-full mx-auto"></div>
           </div>
           <div className="bg-[var(--bg-tertiary)] px-6 py-3 rounded-2xl border border-[var(--card-border)] flex items-center gap-4 group">
-            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+            <div className="relative flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_#34D399]"></div>
+              <div className="absolute inset-0 w-3 h-3 rounded-full bg-emerald-400 animate-ping opacity-60"></div>
+            </div>
             <span className="text-sm font-mono text-[var(--text-secondary)]">
-              Status: Fully Operational
+              Status: <span className="text-emerald-400 font-semibold">Fully Operational</span>
             </span>
           </div>
         </div>
@@ -67,67 +70,64 @@ export default function About() {
           {/* Left Side: System Bio Terminal */}
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-tertiary)] rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-            <div className="relative h-full bg-[#0d1117] rounded-2xl border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+            <div className="relative h-full bg-[#080E12] rounded-2xl border border-white/10 overflow-hidden shadow-2xl flex flex-col">
               {/* Terminal Header */}
-              <div className="bg-[#161b22] px-4 py-3 border-b border-white/5 flex items-center justify-between">
+              <div className="bg-[#0C161C] px-4 py-3 border-b border-white/5 flex items-center justify-between">
                 <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[var(--accent-primary)]/40"></div>
+                  <div className="w-3 h-3 rounded-full bg-[var(--accent-secondary)]/40"></div>
+                  <div className="w-3 h-3 rounded-full bg-[var(--accent-primary)]"></div>
                 </div>
                 <div className="flex items-center gap-2 text-[var(--muted)] text-xs font-mono">
-                  <FiTerminal className="text-sm" />
-                  <span>croxx_bio.sys</span>
+                  <FiTerminal className="text-sm text-[var(--accent-primary)]" />
+                  <span>vikas_bio.sys</span>
                 </div>
               </div>
 
               {/* Terminal Content */}
               <div className="p-8 font-mono text-sm md:text-base leading-relaxed overflow-y-auto">
                 <div className="flex gap-3 mb-4">
-                  <span className="text-green-400">➜</span>
-                  <span className="text-blue-400">~</span>
+                  <span className="text-[var(--accent-primary)]">➜</span>
+                  <span className="text-[var(--accent-secondary)]">~</span>
                   <span className="text-white">whoami</span>
                 </div>
 
                 <p className="text-[var(--text-secondary)] mb-6">
                   <span className="text-[var(--accent-primary)] font-bold">
-                    Croxx
+                    Vikas Kumar
                   </span>{" "}
-                  — A high-performance backend architect specializing in robust{" "}
-                  <span className="text-[var(--accent-secondary)]">PHP</span>{" "}
-                  ecosystems. My focus is on engineering scalable solutions
-                  through{" "}
-                  <span className="text-[var(--accent-secondary)]">
-                    Laravel
+                  — Results-driven{" "}
+                  <span className="text-[var(--accent-primary)]">
+                    PHP & Laravel Developer
                   </span>{" "}
-                  and{" "}
-                  <span className="text-[var(--accent-secondary)]">
-                    Magento 2
-                  </span>
-                  .
+                  experienced in designing and delivering scalable web applications and product-based platforms. Strong in{" "}
+                  <span className="text-[var(--accent-secondary)]">PHP OOP</span>,{" "}
+                  <span className="text-[var(--accent-secondary)]">Laravel</span>,{" "}
+                  <span className="text-[var(--accent-secondary)]">Filament</span>,{" "}
+                  <span className="text-[var(--accent-secondary)]">Magento 2</span>,{" "}
+                  <span className="text-[var(--accent-secondary)]">REST APIs</span>, and{" "}
+                  <span className="text-[var(--accent-secondary)]">AI integrations</span>.
                 </p>
 
                 <div className="flex gap-3 mb-4 text-[var(--muted)]">
-                  <span>// System Directive</span>
+                  <span>// System Directive & Summary</span>
                 </div>
 
                 <p className="text-[var(--text-secondary)] italic border-l-2 border-[var(--accent-primary)] pl-6 py-2 mb-6">
-                  "I don't just write code; I design systems that endure, scale,
-                  and deliver technical excellence through maintainable
-                  architecture."
+                  "Experienced in building custom CRM modules, automating business workflows, and translating requirements into secure, maintainable, and performance-focused solutions."
                 </p>
 
                 <div className="flex gap-3 mb-4">
-                  <span className="text-green-400">➜</span>
-                  <span className="text-blue-400">~</span>
+                  <span className="text-[var(--accent-primary)]">➜</span>
+                  <span className="text-[var(--accent-secondary)]">~</span>
                   <span className="text-white">ls components/focus</span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 text-[var(--accent-secondary)] opacity-80">
-                  <span>[x] Custom_Modules</span>
-                  <span>[x] Admin_UX_Tuning</span>
-                  <span>[x] API_Integration</span>
-                  <span>[x] Load_Optimization</span>
+                <div className="grid grid-cols-2 gap-2 text-[var(--accent-secondary)] opacity-80 text-xs sm:text-sm">
+                  <span>[x] Laravel_Filament_CRM</span>
+                  <span>[x] REST_API_Integrations</span>
+                  <span>[x] Magento2_Hyva_Customs</span>
+                  <span>[x] AI_Chatbots_Workflows</span>
                 </div>
 
                 <div className="mt-8 flex gap-2">
@@ -146,7 +146,7 @@ export default function About() {
                 onMouseLeave={() => setHoveredSpec(null)}
                 className={`card group transition-all duration-500 bg-[var(--bg-secondary)] border border-[var(--card-border)] hover:border-[var(--accent-primary)] p-6 flex flex-col justify-between overflow-hidden relative ${
                   hoveredSpec === spec.id
-                    ? "translate-y-[-8px] shadow-[0_20px_40px_rgba(229,9,20,0.15)]"
+                    ? "translate-y-[-8px] shadow-[0_20px_40px_rgba(0,242,157,0.15)]"
                     : ""
                 }`}
               >
@@ -160,7 +160,7 @@ export default function About() {
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center group-hover:bg-[var(--accent-primary)] transition-all duration-500">
-                      <spec.icon className="text-2xl text-[var(--accent-primary)] group-hover:text-white transition-colors duration-500" />
+                      <spec.icon className="text-2xl text-[var(--accent-primary)] group-hover:text-[#080C0E] transition-colors duration-500" />
                     </div>
                     <div className="text-[10px] uppercase tracking-widest text-[var(--muted)] font-mono">
                       Module: {spec.id}
@@ -181,7 +181,7 @@ export default function About() {
 
                 {/* Corner Decor */}
                 <div className="absolute bottom-2 right-2 opacity-10 group-hover:opacity-30 transition-opacity">
-                  <FiLayers className="text-2xl" />
+                  <FiLayers className="text-2xl text-[var(--accent-primary)]" />
                 </div>
               </div>
             ))}

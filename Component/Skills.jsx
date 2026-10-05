@@ -26,7 +26,7 @@ const skills = [
     level: 90,
     category: "Backend",
     icon: SiPhp,
-    color: "#777BB4",
+    color: "#8892BF",
     description: "Server-side scripting",
   },
   {
@@ -34,7 +34,7 @@ const skills = [
     level: 85,
     category: "Backend",
     icon: SiLaravel,
-    color: "#FF2D20",
+    color: "#FB7185",
     description: "PHP Framework",
   },
   {
@@ -42,7 +42,7 @@ const skills = [
     level: 88,
     category: "Backend",
     icon: SiMagento,
-    color: "#EE672F",
+    color: "#FB923C",
     description: "E-commerce Platform",
   },
   {
@@ -50,7 +50,7 @@ const skills = [
     level: 82,
     category: "Backend",
     icon: FaCode,
-    color: "#E10098",
+    color: "#00F29D",
     description: "API Development",
   },
   {
@@ -58,7 +58,7 @@ const skills = [
     level: 75,
     category: "Backend",
     icon: SiNodedotjs,
-    color: "#339933",
+    color: "#10B981",
     description: "JavaScript Runtime",
   },
 
@@ -68,7 +68,7 @@ const skills = [
     level: 72,
     category: "Frontend",
     icon: SiJavascript,
-    color: "#F7DF1E",
+    color: "#FACC15",
     description: "Programming Language",
   },
   {
@@ -76,7 +76,7 @@ const skills = [
     level: 80,
     category: "Frontend",
     icon: SiReact,
-    color: "#61DAFB",
+    color: "#38BDF8",
     description: "UI Library",
   },
   {
@@ -84,7 +84,7 @@ const skills = [
     level: 78,
     category: "Frontend",
     icon: SiHtml5,
-    color: "#E34F26",
+    color: "#F97316",
     description: "Web Fundamentals",
   },
   {
@@ -92,7 +92,7 @@ const skills = [
     level: 60,
     category: "Frontend",
     icon: SiAlpinedotjs,
-    color: "#8BC0D0",
+    color: "#2DD4BF",
     description: "Lightweight Framework",
   },
   {
@@ -100,7 +100,7 @@ const skills = [
     level: 70,
     category: "Frontend",
     icon: FaBolt,
-    color: "#FFCC00",
+    color: "#FBBF24",
     description: "Magento Theme",
   },
   {
@@ -108,7 +108,7 @@ const skills = [
     level: 85,
     category: "Frontend",
     icon: SiTailwindcss,
-    color: "#06B6D4",
+    color: "#00D2FF",
     description: "Utility-first CSS",
   },
 
@@ -118,7 +118,7 @@ const skills = [
     level: 80,
     category: "Database",
     icon: SiMysql,
-    color: "#4479A1",
+    color: "#38BDF8",
     description: "Relational Database",
   },
   {
@@ -126,7 +126,7 @@ const skills = [
     level: 78,
     category: "Database",
     icon: FaDatabase,
-    color: "#FF6B6B",
+    color: "#00F29D",
     description: "Schema Architecture",
   },
 
@@ -136,7 +136,7 @@ const skills = [
     level: 80,
     category: "Tools",
     icon: SiGit,
-    color: "#F05032",
+    color: "#FB7185",
     description: "Version Control",
   },
   {
@@ -144,7 +144,7 @@ const skills = [
     level: 75,
     category: "Tools",
     icon: FaServer,
-    color: "#4CAF50",
+    color: "#10B981",
     description: "DevOps",
   },
 ];
@@ -197,11 +197,11 @@ export default function Skills() {
           {/* Navigation Buttons */}
           <button
             onClick={scrollPrev}
-            className="hidden absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] flex items-center justify-center hover:border-[var(--accent-primary)] hover:bg-[var(--accent-primary)] transition-all duration-300 group shadow-lg hover:shadow-[0_0_30px_rgba(229,9,20,0.5)]"
+            className="hidden absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] flex items-center justify-center hover:border-[var(--accent-primary)] hover:bg-[var(--accent-primary)] transition-all duration-300 group shadow-lg hover:shadow-[0_0_30px_rgba(0,242,157,0.5)]"
             aria-label="Previous slide"
           >
             <svg
-              className="w-6 h-6 text-[var(--text-secondary)] group-hover:text-white transition-colors"
+              className="w-6 h-6 text-[var(--text-secondary)] group-hover:text-[#080C0E] transition-colors"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -217,11 +217,11 @@ export default function Skills() {
 
           <button
             onClick={scrollNext}
-            className="hidden absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] flex items-center justify-center hover:border-[var(--accent-primary)] hover:bg-[var(--accent-primary)] transition-all duration-300 group shadow-lg hover:shadow-[0_0_30px_rgba(229,9,20,0.5)]"
+            className="hidden absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--card-border)] flex items-center justify-center hover:border-[var(--accent-primary)] hover:bg-[var(--accent-primary)] transition-all duration-300 group shadow-lg hover:shadow-[0_0_30px_rgba(0,242,157,0.5)]"
             aria-label="Next slide"
           >
             <svg
-              className="w-6 h-6 text-[var(--text-secondary)] group-hover:text-white transition-colors"
+              className="w-6 h-6 text-[var(--text-secondary)] group-hover:text-[#080C0E] transition-colors"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -331,11 +331,6 @@ export default function Skills() {
               ))}
             </div>
           </div>
-
-          {/* Gradient Fade Edges */}
-          {/* <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--bg-primary)] to-transparent pointer-events-none z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--bg-primary)] to-transparent pointer-events-none z-10"></div>
-           */}
         </div>
 
         {/* Stats Section */}
@@ -352,7 +347,7 @@ export default function Skills() {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="text-4xl mb-3">{stat.icon}</div>
-              <div className="text-3xl font-bold text-[var(--accent-primary)] mb-2">
+              <div className="text-3xl font-bold text-[var(--accent-primary)] mb-2 font-mono">
                 {stat.value}
               </div>
               <div className="text-sm text-[var(--text-secondary)]">

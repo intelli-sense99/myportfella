@@ -17,13 +17,13 @@ export default function Hero() {
           {/* Left Column - Text Content */}
           <div className="space-y-4">
             <div className="inline-block">
-              <span className="text-sm font-semibold text-[var(--accent-primary)] tracking-wider uppercase">
-                Backend Developer
+              <span className="text-sm font-semibold text-[var(--accent-primary)] tracking-wider uppercase font-mono">
+                PHP & Laravel Developer
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-              Hi, I'm <span className="neon-text block mt-2">Croxx</span>
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
+              Hi, I'm <span className="neon-text block mt-2">Vikas Kumar</span>
             </h1>
 
             <p className="text-xl text-[var(--text-secondary)] leading-relaxed max-w-xl">
@@ -35,19 +35,16 @@ export default function Hero() {
             </p>
 
             <p className="text-base text-[var(--muted)] max-w-xl">
-              Specialized in custom modules, checkout customizations, admin UX
-              improvements, and high-performance backend APIs.
+              Specialized in custom CRM modules, checkout customizations, REST APIs,
+              and AI integrations with high performance.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-4 pt-4 items-center">
               <a href="#contact" className="btn-neon">
                 Get In Touch
               </a>
-              <a
-                href="#projects"
-                className="px-6 py-3 rounded-lg border-2 border-[var(--accent-primary)]/30 text-sm font-semibold hover:border-[var(--accent-primary)] hover:bg-[var(--accent-primary)]/10 transition-all duration-300 hover:scale-105 cursor-pointer"
-              >
+              <a href="#projects" className="btn-outline">
                 View My Work
               </a>
             </div>
@@ -55,8 +52,11 @@ export default function Hero() {
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center hover:border-[var(--accent-primary)] hover:scale-110 transition-all duration-300 cursor-pointer"
+                href="https://github.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="w-10 h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)] hover:scale-110 transition-all duration-300 cursor-pointer shadow-md"
               >
                 <svg
                   className="w-5 h-5"
@@ -67,8 +67,11 @@ export default function Hero() {
                 </svg>
               </a>
               <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center hover:border-[var(--accent-primary)] hover:scale-110 transition-all duration-300 cursor-pointer"
+                href="https://www.linkedin.com/in/vikas-kumar-2260692a1"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-secondary)] hover:border-[var(--accent-secondary)] hover:scale-110 transition-all duration-300 cursor-pointer shadow-md"
               >
                 <svg
                   className="w-5 h-5"
@@ -80,7 +83,8 @@ export default function Hero() {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center hover:border-[var(--accent-primary)] hover:scale-110 transition-all duration-300 cursor-pointer"
+                aria-label="Twitter / X"
+                className="w-10 h-10 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)] hover:scale-110 transition-all duration-300 cursor-pointer shadow-md"
               >
                 <svg
                   className="w-5 h-5"
@@ -98,9 +102,9 @@ export default function Hero() {
             {/* Main Feature Card */}
             <div className="card group cursor-pointer">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(0,242,157,0.2)]">
                   <svg
-                    className="w-6 h-6 text-white"
+                    className="w-6 h-6 text-[#080C0E]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -118,16 +122,16 @@ export default function Hero() {
                     Core Focus
                   </h3>
                   <ul className="mt-3 text-sm text-[var(--muted)] space-y-2">
-                    <li className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)]"></span>
+                    <li className="flex items-center gap-2 text-[var(--text-secondary)]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] shadow-[0_0_6px_#00F29D]"></span>
                       Magento 2 custom modules & checkout
                     </li>
-                    <li className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-secondary)]"></span>
+                    <li className="flex items-center gap-2 text-[var(--text-secondary)]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-secondary)] shadow-[0_0_6px_#00D2FF]"></span>
                       Laravel backend & REST/GraphQL APIs
                     </li>
-                    <li className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-tertiary)]"></span>
+                    <li className="flex items-center gap-2 text-[var(--text-secondary)]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-tertiary)] shadow-[0_0_6px_#10B981]"></span>
                       Hyvä theme & admin UX optimization
                     </li>
                   </ul>
@@ -146,7 +150,7 @@ export default function Hero() {
                   <div className="text-2xl font-bold neon-text">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-[var(--muted)] mt-1">
+                  <div className="text-xs text-[var(--muted)] mt-1 font-medium">
                     {stat.label}
                   </div>
                 </div>
@@ -154,17 +158,17 @@ export default function Hero() {
             </div>
 
             {/* Availability Badge */}
-            <div className="card bg-gradient-to-r from-green-500/10 to-[var(--accent-secondary)]/10 border-green-500/20">
+            <div className="card bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border-emerald-500/30">
               <div className="flex items-center gap-3">
-                <div className="relative">
-                  <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-                  <div className="absolute inset-0 w-3 h-3 rounded-full bg-green-500 animate-ping"></div>
+                <div className="relative flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_#34D399]"></div>
+                  <div className="absolute inset-0 w-3 h-3 rounded-full bg-emerald-400 animate-ping opacity-75"></div>
                 </div>
                 <div>
-                  <div className="font-semibold text-sm">
+                  <div className="font-semibold text-sm text-white">
                     Available for Freelance
                   </div>
-                  <div className="text-xs text-[var(--muted)]">
+                  <div className="text-xs text-emerald-400/80 font-medium">
                     Open to new opportunities
                   </div>
                 </div>

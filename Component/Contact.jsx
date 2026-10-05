@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useState } from "react";
+import { FiPhone, FiMail, FiMapPin, FiClock } from "react-icons/fi";
 
 export default function Contact() {
   const [status, setStatus] = useState("");
@@ -129,7 +130,7 @@ export default function Contact() {
               {/* Name Input */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                  Your Name <span className="text-red-500 ml-1">*</span>
+                  Your Name <span className="text-[var(--accent-primary)] ml-1">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
@@ -152,7 +153,7 @@ export default function Contact() {
                     placeholder="Your Name"
                     className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${
                       errors.name
-                        ? "border-red-500 focus:border-red-500"
+                        ? "border-rose-500/80 focus:border-rose-400"
                         : "border-[var(--card-border)] focus:border-[var(--accent-primary)]"
                     }`}
                     value={formData.name}
@@ -161,7 +162,7 @@ export default function Contact() {
                   />
                 </div>
                 {errors.name && (
-                  <p className="mt-1 text-sm text-red-500 animate-pulse">
+                  <p className="mt-1 text-sm text-rose-400 animate-pulse">
                     {errors.name}
                   </p>
                 )}
@@ -170,23 +171,11 @@ export default function Contact() {
               {/* Phone Input */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                  Phone Number <span className="text-red-500 ml-1">*</span>
+                  Phone Number <span className="text-[var(--accent-primary)] ml-1">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
+                    <FiPhone className="w-5 h-5" />
                   </div>
                   <input
                     name="phone"
@@ -194,7 +183,7 @@ export default function Contact() {
                     type="tel"
                     className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${
                       errors.phone
-                        ? "border-red-500 focus:border-red-500"
+                        ? "border-rose-500/80 focus:border-rose-400"
                         : "border-[var(--card-border)] focus:border-[var(--accent-primary)]"
                     }`}
                     value={formData.phone}
@@ -203,7 +192,7 @@ export default function Contact() {
                   />
                 </div>
                 {errors.phone && (
-                  <p className="mt-1 text-sm text-red-500 animate-pulse">
+                  <p className="mt-1 text-sm text-rose-400 animate-pulse">
                     {errors.phone}
                   </p>
                 )}
@@ -212,7 +201,7 @@ export default function Contact() {
               {/* Email Input */}
               <div className="relative">
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                  Email Address <span className="text-red-500 ml-1">*</span>
+                  Email Address <span className="text-[var(--accent-primary)] ml-1">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted)]">
@@ -236,7 +225,7 @@ export default function Contact() {
                     type="email"
                     className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] ${
                       errors.email
-                        ? "border-red-500 focus:border-red-500"
+                        ? "border-rose-500/80 focus:border-rose-400"
                         : "border-[var(--card-border)] focus:border-[var(--accent-primary)]"
                     }`}
                     value={formData.email}
@@ -245,7 +234,7 @@ export default function Contact() {
                   />
                 </div>
                 {errors.email && (
-                  <p className="mt-1 text-sm text-red-500 animate-pulse">
+                  <p className="mt-1 text-sm text-rose-400 animate-pulse">
                     {errors.email}
                   </p>
                 )}
@@ -255,7 +244,7 @@ export default function Contact() {
             {/* Message Textarea */}
             <div className="relative">
               <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
-                Your Message <span className="text-red-500 ml-1">*</span>
+                Your Message <span className="text-[var(--accent-primary)] ml-1">*</span>
               </label>
               <div className="relative">
                 <div className="absolute left-4 top-4 text-[var(--muted)]">
@@ -278,7 +267,7 @@ export default function Contact() {
                   placeholder="Tell me about your project..."
                   className={`w-full pl-12 pr-4 py-3 bg-[var(--bg-tertiary)] border-2 rounded-lg focus:outline-none transition-colors text-[var(--text-primary)] placeholder:text-[var(--muted)] resize-none ${
                     errors.message
-                      ? "border-red-500 focus:border-red-500"
+                      ? "border-rose-500/80 focus:border-rose-400"
                       : "border-[var(--card-border)] focus:border-[var(--accent-primary)]"
                   }`}
                   rows="6"
@@ -288,7 +277,7 @@ export default function Contact() {
                 ></textarea>
               </div>
               {errors.message && (
-                <p className="mt-1 text-sm text-red-500 animate-pulse">
+                <p className="mt-1 text-sm text-rose-400 animate-pulse">
                   {errors.message}
                 </p>
               )}
@@ -338,9 +327,9 @@ export default function Contact() {
                 <div
                   className={`text-sm font-medium animate-pulse ${
                     status.includes("success")
-                      ? "text-green-500"
+                      ? "text-emerald-400"
                       : status.includes("error") || status.includes("Failed")
-                      ? "text-red-500"
+                      ? "text-rose-400"
                       : "text-[var(--accent-primary)]"
                   }`}
                 >
@@ -351,115 +340,102 @@ export default function Contact() {
           </form>
         </div>
 
-        {/* Contact Info Cards - Morphing Terminals */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-16 max-w-5xl mx-auto">
+        {/* Contact Info Cards - Expanding Rounded Pills */}
+        <div className="flex flex-wrap justify-center items-center gap-6 mt-16 max-w-5xl mx-auto">
+          {/* Email Pill */}
           <div
             onClick={() => {
               if (typeof navigator !== "undefined") {
-                navigator.clipboard.writeText("croxx@example.com");
+                navigator.clipboard.writeText("vikas1963kondal@gmail.com");
                 setStatus("Email copied to clipboard!");
                 setTimeout(() => setStatus(""), 3000);
               }
             }}
-            className="group relative h-20 w-full md:w-20 md:hover:w-80 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] hover:border-[var(--accent-primary)] rounded-2xl flex items-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer shadow-2xl"
+            className="group relative h-16 w-16 hover:w-80 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] hover:border-[var(--accent-primary)] rounded-full flex items-center transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(0,242,157,0.25)]"
           >
-            {/* Icon Module */}
-            <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center relative z-10 transition-transform duration-500 md:group-hover:scale-90">
-              <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center md:group-hover:bg-[var(--accent-primary)] transition-all duration-500 md:group-hover:scale-110">
-                <svg
-                  className="w-6 h-6 text-[var(--accent-primary)] md:group-hover:text-white transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
+            {/* Circular Icon */}
+            <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center relative z-10">
+              <div className="w-11 h-11 rounded-full bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center group-hover:bg-[var(--accent-primary)] transition-all duration-300 group-hover:scale-105">
+                <FiMail className="text-xl text-[var(--accent-primary)] group-hover:text-[#080C0E] transition-colors duration-300" />
               </div>
             </div>
 
-            {/* Content Reveal */}
-            <div className="flex flex-col opacity-100 translate-x-0 md:opacity-0 md:-translate-x-4 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 md:delay-150 pr-8 whitespace-nowrap">
-              <h3 className="font-bold text-lg text-[var(--text-primary)]">
+            {/* Expanding Text Content */}
+            <div className="flex flex-col opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 delay-100 pr-6 whitespace-nowrap">
+              <h3 className="font-bold text-sm text-[var(--text-primary)] leading-tight">
                 Email Address
               </h3>
-              <div className="text-sm text-[var(--accent-secondary)] font-mono truncate">
-                croxx@example.com
+              <div className="text-xs text-[var(--accent-secondary)] font-mono truncate">
+                vikas1963kondal@gmail.com
               </div>
             </div>
           </div>
 
-          {/* Location Terminal */}
-          <div className="group relative h-20 w-full md:w-20 md:hover:w-80 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] hover:border-[var(--accent-primary)] rounded-2xl flex items-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer shadow-2xl">
-            {/* Icon Module */}
-            <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center relative z-10 transition-transform duration-500 md:group-hover:scale-90">
-              <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center md:group-hover:bg-[var(--accent-primary)] transition-all duration-500 md:group-hover:scale-110">
-                <svg
-                  className="w-6 h-6 text-[var(--accent-primary)] md:group-hover:text-white transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+          {/* Phone Pill */}
+          <div
+            onClick={() => {
+              if (typeof navigator !== "undefined") {
+                navigator.clipboard.writeText("+91-8699129347");
+                setStatus("Phone number copied to clipboard!");
+                setTimeout(() => setStatus(""), 3000);
+              }
+            }}
+            className="group relative h-16 w-16 hover:w-72 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] hover:border-[var(--accent-secondary)] rounded-full flex items-center transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(0,210,255,0.25)]"
+          >
+            {/* Circular Icon */}
+            <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center relative z-10">
+              <div className="w-11 h-11 rounded-full bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center group-hover:bg-[var(--accent-secondary)] transition-all duration-300 group-hover:scale-105">
+                <FiPhone className="text-xl text-[var(--accent-secondary)] group-hover:text-[#080C0E] transition-colors duration-300" />
               </div>
             </div>
 
-            {/* Content Reveal */}
-            <div className="flex flex-col opacity-100 translate-x-0 md:opacity-0 md:-translate-x-4 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 md:delay-150 pr-8 whitespace-nowrap">
-              <h3 className="font-bold text-lg text-[var(--text-primary)]">
+            {/* Expanding Text Content */}
+            <div className="flex flex-col opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 delay-100 pr-6 whitespace-nowrap">
+              <h3 className="font-bold text-sm text-[var(--text-primary)] leading-tight">
+                Phone / WhatsApp
+              </h3>
+              <div className="text-xs text-[var(--accent-secondary)] font-mono">
+                +91-8699129347
+              </div>
+            </div>
+          </div>
+
+          {/* Location Pill */}
+          <div className="group relative h-16 w-16 hover:w-72 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] hover:border-[var(--accent-primary)] rounded-full flex items-center transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(0,242,157,0.25)]">
+            {/* Circular Icon */}
+            <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center relative z-10">
+              <div className="w-11 h-11 rounded-full bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center group-hover:bg-[var(--accent-primary)] transition-all duration-300 group-hover:scale-105">
+                <FiMapPin className="text-xl text-[var(--accent-primary)] group-hover:text-[#080C0E] transition-colors duration-300" />
+              </div>
+            </div>
+
+            {/* Expanding Text Content */}
+            <div className="flex flex-col opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 delay-100 pr-6 whitespace-nowrap">
+              <h3 className="font-bold text-sm text-[var(--text-primary)] leading-tight">
                 Location
               </h3>
-              <div className="text-sm text-[var(--accent-secondary)] font-mono">
-                Remote / Worldwide
+              <div className="text-xs text-[var(--accent-secondary)] font-mono">
+                Ludhiana, Punjab, India
               </div>
             </div>
           </div>
 
-          {/* Response Terminal */}
-          <div className="group relative h-20 w-full md:w-20 md:hover:w-80 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] hover:border-[var(--accent-tertiary)] rounded-2xl flex items-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden cursor-pointer shadow-2xl">
-            {/* Icon Module */}
-            <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center relative z-10 transition-transform duration-500 md:group-hover:scale-90">
-              <div className="w-12 h-12 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center md:group-hover:bg-[var(--accent-tertiary)] transition-all duration-500 md:group-hover:scale-110">
-                <svg
-                  className="w-6 h-6 text-[var(--accent-primary)] md:group-hover:text-white transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+          {/* Response Time Pill */}
+          <div className="group relative h-16 w-16 hover:w-72 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] hover:border-[var(--accent-tertiary)] rounded-full flex items-center transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(16,185,129,0.25)]">
+            {/* Circular Icon */}
+            <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center relative z-10">
+              <div className="w-11 h-11 rounded-full bg-[var(--bg-tertiary)] border border-[var(--card-border)] flex items-center justify-center group-hover:bg-[var(--accent-tertiary)] transition-all duration-300 group-hover:scale-105">
+                <FiClock className="text-xl text-[var(--accent-tertiary)] group-hover:text-[#080C0E] transition-colors duration-300" />
               </div>
             </div>
 
-            {/* Content Reveal */}
-            <div className="flex flex-col opacity-100 translate-x-0 md:opacity-0 md:-translate-x-4 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500 md:delay-150 pr-8 whitespace-nowrap">
-              <h3 className="font-bold text-lg text-[var(--text-primary)]">
+            {/* Expanding Text Content */}
+            <div className="flex flex-col opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 delay-100 pr-6 whitespace-nowrap">
+              <h3 className="font-bold text-sm text-[var(--text-primary)] leading-tight">
                 Response Time
               </h3>
-              <div className="text-sm text-[var(--accent-secondary)] font-mono flex items-center gap-2">
+              <div className="text-xs text-[var(--accent-secondary)] font-mono flex items-center gap-2">
                 Within 24 Hours
-                {/* <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div> */}
               </div>
             </div>
           </div>

@@ -1,71 +1,60 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root {
-  /* Netflix-Inspired Professional Developer Theme */
-  --bg-primary: #0A0A0A;
-  /* Pure deep black - cinematic foundation */
-  --bg-secondary: #141414;
-  /* Netflix dark gray */
-  --bg-tertiary: #1F1F1F;
-  /* Elevated surfaces */
+  /* Emerald Obsidian Palette */
+  --bg-primary: #080C0E;
+  --bg-secondary: #0D151A;
+  --bg-tertiary: #132026;
 
-  /* Card & Surface Colors */
-  --card-bg: rgba(20, 20, 20, 0.85);
-  /* Glassmorphic dark with more opacity */
-  --card-border: rgba(229, 9, 20, 0.25);
-  /* Subtle Netflix red glow */
-  --card-hover-border: rgba(229, 9, 20, 0.6);
+  /* Card & Surface Tokens */
+  --card-bg: rgba(13, 21, 26, 0.85);
+  --card-border: rgba(0, 242, 157, 0.15);
+  --card-hover-border: rgba(0, 242, 157, 0.5);
 
-  /* Primary Accent - Netflix Crimson (Bold, Professional, Attention) */
-  --accent-primary: #E50914;
-  /* Netflix signature red */
-  --accent-primary-light: #F40612;
-  --accent-primary-dark: #B20710;
+  /* Primary Accent - Electric Emerald */
+  --accent-primary: #00F29D;
+  --accent-primary-light: #34FBB5;
+  --accent-primary-dark: #00BF7A;
 
-  /* Secondary Accent - Platinum Silver (Elegance, Technology) */
-  --accent-secondary: #B8B8B8;
-  /* Refined silver */
-  --accent-secondary-light: #E5E5E5;
+  /* Secondary Accent - Cyber Cyan */
+  --accent-secondary: #00D2FF;
+  --accent-secondary-light: #5CE1E6;
 
-  /* Tertiary Accent - Deep Crimson (Depth, Sophistication) */
-  --accent-tertiary: #831010;
-  /* Dark burgundy */
-  --accent-tertiary-light: #A01313;
+  /* Tertiary Accent - Deep Mint */
+  --accent-tertiary: #10B981;
+  --accent-tertiary-light: #34D399;
 
   /* Text Colors */
-  --text-primary: #FFFFFF;
-  /* Pure white for maximum contrast */
-  --text-secondary: #B3B3B3;
-  /* Netflix gray text */
-  --muted: #808080;
-  /* Muted gray */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --muted: #64748B;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #E50914 0%, #831010 100%);
-  --gradient-secondary: linear-gradient(135deg, #141414 0%, #0A0A0A 100%);
-  --gradient-accent: linear-gradient(135deg, #E50914 0%, #F40612 50%, #831010 100%);
+  --gradient-primary: linear-gradient(135deg, #00F29D 0%, #00D2FF 100%);
+  --gradient-secondary: linear-gradient(135deg, #0D151A 0%, #080C0E 100%);
+  --gradient-accent: linear-gradient(135deg, #00F29D 0%, #00D2FF 50%, #10B981 100%);
 }
 
-/* Animated Gradient Background */
+/* Background & Body Setup */
 html,
 body,
 #__next {
-  height: 100%;
+  min-height: 100%;
 }
 
-/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  @apply text-slate-100 antialiased;
-  background: linear-gradient(135deg, #0A0A0A 0%, #141414 50%, #1F1F1F 100%);
-  background-size: 400% 400%;
-  /* animation: gradientShift 15s ease infinite; */
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(0, 242, 157, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(0, 210, 255, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.03) 0%, transparent 50%),
+    linear-gradient(to bottom, #080C0E, #0A1014, #080C0E);
+  background-attachment: fixed;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -73,73 +62,63 @@ body {
   overflow-x: hidden;
 }
 
-
-/* Animated background gradient */
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-
-/* Floating orbs for depth - using body::before only */
+/* Ambient glow orb */
 body::before {
   content: '';
   position: fixed;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
+  filter: blur(120px);
+  opacity: 0.12;
   z-index: 0;
-  animation: float 20s ease-in-out infinite;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
-  top: -300px;
-  right: -300px;
+  animation: floatOrb 22s ease-in-out infinite alternate;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, var(--accent-primary) 0%, var(--accent-secondary) 50%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  pointer-events: none;
 }
 
-
-@keyframes float {
-
-  0%,
-  100% {
+@keyframes floatOrb {
+  0% {
     transform: translate(0, 0) scale(1);
   }
-
-  33% {
-    transform: translate(30px, -30px) scale(1.1);
+  50% {
+    transform: translate(-60px, 80px) scale(1.15);
   }
-
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
+  100% {
+    transform: translate(40px, 40px) scale(0.95);
   }
 }
 
 .container {
-  @apply mx-auto px-6 lg:px-8;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   position: relative;
   z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 /* Modern Card with Glassmorphism */
 .card {
   background: var(--card-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: 1.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .card::before {
@@ -151,120 +130,120 @@ body::before {
   height: 2px;
   background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--accent-primary);
-  box-shadow: 0 0px 12px #e5091459, 0 0 12px #e5091440, inset 0 1px #ffffff1a
+  transform: translateY(-6px);
+  border-color: var(--card-hover-border);
+  box-shadow: 
+    0 12px 30px -10px rgba(0, 242, 157, 0.22),
+    0 0 20px -5px rgba(0, 210, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .card:hover::before {
   opacity: 1;
 }
 
-/* Neon Text Effect */
+/* Glowing Neon Text Effect */
 .neon-text {
   background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
-  animation: gradientFlow 3s ease infinite;
+  animation: gradientFlow 6s ease infinite;
   font-weight: 700;
-  position: relative;
   display: inline-block;
 }
 
 @keyframes gradientFlow {
-
-  0%,
-  100% {
+  0% {
     background-position: 0% 50%;
   }
-
   50% {
     background-position: 100% 50%;
   }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-/* Netflix-Style Button */
+/* Emerald Neon Button */
 .btn-neon {
   position: relative;
-  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: white;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark));
+  letter-spacing: 0.02em;
+  color: #080C0E;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow:
-    0 4px 15px rgba(229, 9, 20, 0.5),
-    0 0 20px rgba(229, 9, 20, 0.3);
+    0 4px 20px rgba(0, 242, 157, 0.35),
+    0 0 35px rgba(0, 210, 255, 0.2);
 }
 
 .btn-neon:hover {
-  transform: translateY(-2px) scale(1.05);
-  background: var(--accent-primary-light);
+  transform: translateY(-2px) scale(1.03);
   box-shadow:
-    0 8px 30px rgba(229, 9, 20, 0.7),
-    0 0 50px rgba(229, 9, 20, 0.5);
+    0 8px 30px rgba(0, 242, 157, 0.55),
+    0 0 50px rgba(0, 210, 255, 0.35);
 }
 
-/* Smooth Transitions */
-a,
-button {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.btn-neon:active {
+  transform: translateY(0) scale(0.98);
 }
 
-/* Glow effect on hover */
-.glow-on-hover {
+/* Secondary Ghost / Outline Button */
+.btn-outline {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(13, 21, 26, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 242, 157, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.glow-on-hover::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary), var(--accent-primary));
-  border-radius: inherit;
-  opacity: 0;
-  z-index: -1;
-  filter: blur(10px);
-  transition: opacity 0.3s ease;
-  background-size: 300% 300%;
-  animation: gradientRotate 3s linear infinite;
+.btn-outline:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+  background: rgba(0, 242, 157, 0.08);
+  color: var(--accent-primary);
+  box-shadow: 0 0 20px rgba(0, 242, 157, 0.2);
 }
 
-.glow-on-hover:hover::after {
-  opacity: 0.7;
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@keyframes gradientRotate {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
 }
 
-/* Shimmer animation for progress bars */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
+::-webkit-scrollbar-thumb {
+  background: #1A2B33;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 242, 157, 0.1);
+}
 
-  100% {
-    transform: translateX(100%);
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary-dark);
 }

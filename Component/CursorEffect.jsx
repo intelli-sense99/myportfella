@@ -43,49 +43,46 @@ export default function CursorEffect() {
     let animationId;
 
     const animate = () => {
-      // Lerp factors (0.1 = slow/smooth, 0.2 = fast/responsive)
       const lerp = (start, end, factor) => start + (end - start) * factor;
 
-      // Update positions for each layer with much higher speeds for snappier response
       currentPos.current.bg.x = lerp(
         currentPos.current.bg.x,
         targetPos.current.x,
-        0.15
+        0.12
       );
       currentPos.current.bg.y = lerp(
         currentPos.current.bg.y,
         targetPos.current.y,
-        0.15
+        0.12
       );
 
       currentPos.current.ripple.x = lerp(
         currentPos.current.ripple.x,
         targetPos.current.x,
-        0.35
+        0.3
       );
       currentPos.current.ripple.y = lerp(
         currentPos.current.ripple.y,
         targetPos.current.y,
-        0.35
+        0.3
       );
 
       currentPos.current.glow.x = lerp(
         currentPos.current.glow.x,
         targetPos.current.x,
-        0.6
+        0.5
       );
       currentPos.current.glow.y = lerp(
         currentPos.current.glow.y,
         targetPos.current.y,
-        0.6
+        0.5
       );
 
-      // Apply transforms directly to DOM for maximum performance
+      // Apply transforms directly to DOM for optimal 60fps performance
       if (bgRef.current) {
         const xPercent = (currentPos.current.bg.x / window.innerWidth) * 100;
         const yPercent = (currentPos.current.bg.y / window.innerHeight) * 100;
-        // Sharper background flare
-        bgRef.current.style.background = `radial-gradient(circle 600px at ${xPercent}% ${yPercent}%, rgba(229, 9, 20, 0.15) 0%, rgba(131, 16, 16, 0.05) 40%, transparent 75%)`;
+        bgRef.current.style.background = `radial-gradient(circle 500px at ${xPercent}% ${yPercent}%, rgba(0, 242, 157, 0.08) 0%, rgba(0, 210, 255, 0.03) 40%, transparent 70%)`;
       }
 
       if (rippleRef.current) {
@@ -94,18 +91,16 @@ export default function CursorEffect() {
         }px, ${currentPos.current.ripple.y}px, 0) translate(-50%, -50%) scale(${
           isPressed ? 1.2 : 1
         })`;
-        // More vibrant ripple
-        rippleRef.current.style.background = `radial-gradient(circle, rgba(229, 9, 20, 0.25) 0%, rgba(229, 9, 20, 0.1) 45%, transparent 70%)`;
+        rippleRef.current.style.background = `radial-gradient(circle, rgba(0, 242, 157, 0.18) 0%, rgba(0, 210, 255, 0.08) 45%, transparent 70%)`;
       }
 
       if (glowRef.current) {
         glowRef.current.style.transform = `translate3d(${
           currentPos.current.glow.x
         }px, ${currentPos.current.glow.y}px, 0) translate(-50%, -50%) scale(${
-          isPressedRef.current ? 1.4 : 1
+          isPressedRef.current ? 1.3 : 1
         })`;
-        // Sharper inner glow
-        glowRef.current.style.background = `radial-gradient(circle, rgba(229, 9, 20, 0.4) 0%, rgba(229, 9, 20, 0.15) 30%, transparent 60%)`;
+        glowRef.current.style.background = `radial-gradient(circle, rgba(0, 242, 157, 0.25) 0%, rgba(0, 210, 255, 0.1) 30%, transparent 60%)`;
       }
 
       animationId = requestAnimationFrame(animate);
@@ -119,32 +114,32 @@ export default function CursorEffect() {
       window.removeEventListener("mouseup", handleMouseUp);
       cancelAnimationFrame(animationId);
     };
-  }, []); // Remove isPressed dependency to avoid loop restarts
+  }, [isPressed]);
 
   return (
     <>
-      {/* Radial Gradient Background - Smoothed via Lerp */}
+      {/* Radial Gradient Background */}
       <div
         ref={bgRef}
         className="fixed inset-0 pointer-events-none z-[1]"
         style={{ filter: "blur(30px)" }}
       />
 
-      {/* Ripple Effect - Hardware Accelerated */}
+      {/* Ripple Effect */}
       <div
         ref={rippleRef}
-        className="fixed w-[500px] h-[500px] rounded-full pointer-events-none z-[1] will-change-transform"
+        className="fixed w-[450px] h-[450px] rounded-full pointer-events-none z-[1] will-change-transform"
         style={{
-          filter: "blur(40px)",
+          filter: "blur(35px)",
         }}
       />
 
-      {/* Inner Glow - Tighter & Responsive */}
+      {/* Inner Glow */}
       <div
         ref={glowRef}
-        className="fixed w-64 h-64 rounded-full pointer-events-none z-[1] will-change-transform"
+        className="fixed w-48 h-48 rounded-full pointer-events-none z-[1] will-change-transform"
         style={{
-          filter: "blur(20px)",
+          filter: "blur(18px)",
         }}
       />
     </>
